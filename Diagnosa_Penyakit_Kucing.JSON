@@ -97,5 +97,28 @@
       "then": "Otitis (Radang Telinga)",
       "cf": 0.9
     }
+    {
+      "id": "R9",
+      "if": [
+        "Demam",
+        "Hilangnya nafsu makan",
+        "Sering muntah",
+        "Feline Calicivirus (Flu Kucing)"
+      ],
+      "then": "Feline Panleukopenia (Kucing Jahat)",
+      "cf":         
+    }
+    {
+      "id": "R10",
+      "if": [
+        "Demam",
+        "Hilangnya nafsu makan",
+        "Sering muntah",
+        "Feline Calicivirus (Flu Kucing)"
+      ],
+      "then": "Feline Panleukopenia (Kucing Jahat)",
+      "cf":         
+    }
   ]
+
   
