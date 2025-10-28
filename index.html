@@ -1,0 +1,32 @@
+
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><title>Sistem Pakar - Diagnosa Penyakit Kucing (Demo)</title></head>
+  <body>
+    <h2>Sistem Pakar - Diagnosa Penyakit Kucing (Demo)</h2>
+    <form method="post">
+      <p>Pilih gejala yang dialami kucing, lalu pilih tingkat keyakinan Anda terhadap tiap gejala.</p>
+      <table border="0" cellpadding="6">
+        <tr><th>Gejala</th><th>Pilih?</th><th>Tingkat Keyakinan</th></tr>
+        {% for gid, gdesc in symptoms.items() %}
+        <tr>
+          <td>{{gid}} - {{gdesc}}</td>
+          <td><input type="checkbox" name="sym_{{gid}}" value="sangat_yakin" checked hidden></td>
+          <td>
+            <select name="sym_{{gid}}">
+              <option value="tidak_yakin">Tidak Memiliki</option>
+              <option value="sangat_yakin">Sangat Yakin</option>
+              <option value="yakin">Yakin</option>
+              <option value="cukup_yakin" selected>Cukup Yakin</option>
+              <option value="sedikit_yakin">Sedikit Yakin</option>
+              <option value="kurang_yakin">Kurang Yakin</option>
+            </select>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <p><small>Catatan: pilih "Tidak Memiliki" untuk gejala yang tidak dialami. Ini demo—untuk tugas akhir tim, Anda bisa ubah agar hanya gejala terpilih yang dikirim.</small></p>
+      <button type="submit">Diagnosa</button>
+    </form>
+  </body>
+</html>

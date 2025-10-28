@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>🐱 Sistem Pakar Diagnosa Penyakit Kucing</title>
+    <write>Gunakan aplikasi ini untuk membantu mendiagnosa penyakit pada kucing berdasarkan gejala yang Anda lihat.<write></write>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 30px; }
+      h2 { text-align: center; }
+      table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+      th, td { padding: 8px; text-align: left; }
+      select { padding: 4px; }
+      button {
+        margin-top: 15px;
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover { background-color: #0056b3; }
+    </style>
+    <script>
+      function validateForm() {
+        let count = 0;
+        for (let i = 1; i <= 6; i++) {
+          let val = document.forms["diagnosaForm"]["sym_" + i].value;
+          if (val !== "none") count++;
+        }
+        if (count < 2) {
+          alert("Silakan pilih minimal 2 gejala sebelum melakukan diagnosa.");
+          return false;
+        }
+        return true;
+      }
+    </script>
+  </head>
+  <body>
+    <h2>🐱Pilih Gejala Kucing</h2>
+    <form name="diagnosaForm" method="post" onsubmit="return validateForm()">
+      <table border="0">
+        <tr><th>No</th><th>Gejala</th><th>Tingkat Keyakinan</th></tr>
+        {% for i in range(1,7) %}
+        <tr>
+          <td>{{ i }}</td>
+          <td>
+            <select name="sym_{{i}}">
+              <option value="none">--Pilih gejala--</option>
+              {% for gid, gdesc in symptoms.items() %}
+                <option value="{{gid}}">{{gid}} - {{gdesc}}</option>
+              {% endfor %}
+            </select>
+          </td>
+          <td>
+            <select name="conf_{{i}}">
+              <option value="sangat_yakin">Sangat Yakin</option>
+              <option value="yakin">Yakin</option>
+              <option value="cukup_yakin" selected>Cukup Yakin</option>
+              <option value="sedikit_yakin">Sedikit Yakin</option>
+              <option value="kurang_yakin">Kurang Yakin</option>
+              <option value="tidak_yakin">Tidak Memiliki</option>
+            </select>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <center><button type="submit">Diagnosa</button></center>
+    </form>
+  </body>
+</html>
